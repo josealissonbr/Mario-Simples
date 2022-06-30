@@ -2,10 +2,18 @@ const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
 
+var loopMusic = new Audio("./mp3/overworld.mp3");
+var jumpAudio = new Audio("./mp3/jump.mp3");
+
+/** Simulate click to start audio */
+mario.click();
+
 const marioJump = (event) => {
 
     if (event.code == "Space"){
         mario.classList.add("mario-jump");
+        jumpAudio.play();
+        jumpAudio.volume = 0.4
         setTimeout(function () {
             mario.classList.remove("mario-jump");
         }, 600);
@@ -33,7 +41,18 @@ const loop = setInterval(() => {
         clouds.style.left = `${cloudsPosition}px`;
 
         clearInterval();
+    }else{
+        if (loopMusic.duration > 0 && !loopMusic.paused) {
+
+            //Its playing...do your job
+        
+        } else {
+            loopMusic.play();
+            loopMusic.volume = 0.2;
+        }
     }
+
+
 
 }, 10);
 
