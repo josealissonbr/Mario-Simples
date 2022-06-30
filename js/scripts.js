@@ -5,6 +5,8 @@ const clouds = document.querySelector('.clouds');
 var loopMusic = new Audio("./mp3/overworld.mp3");
 var jumpAudio = new Audio("./mp3/jump.mp3");
 
+var isGameOver = false;
+
 /** Simulate click to start audio */
 mario.click();
 
@@ -21,12 +23,15 @@ const marioJump = (event) => {
 }
 
 const loop = setInterval(() => {
+    if (isGameOver)
+    return;
 
     const pipePosition = pipe.offsetLeft;
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
     const cloudsPosition = clouds.offsetLeft;
-    //console.log(marioPosition)
+    console.log('loop!')
     if (pipePosition <= 100 && pipePosition > 0 && marioPosition <= 100){
+        isGameOver = true;
 
         pipe.style.animation = 'none';
         pipe.style.left = `${pipePosition}px`;
@@ -40,6 +45,10 @@ const loop = setInterval(() => {
         clouds.style.animation = 'none';
         clouds.style.left = `${cloudsPosition}px`;
 
+        loopMusic.pause();
+
+        var gameOverAudio = new Audio("./mp3/gameover.mp3");
+        gameOverAudio.play();
         clearInterval();
     }else{
         if (loopMusic.duration > 0 && !loopMusic.paused) {
