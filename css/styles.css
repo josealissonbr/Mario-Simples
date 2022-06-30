@@ -14,6 +14,16 @@
     background: linear-gradient(#87CEEB, #E0F6FF);
 }
 
+.black-board {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    border-bottom: 15px solid black;
+    margin: 0 auto;
+    background-color: black;
+    opacity: 0;
+}
+
 .pipe {
     position: absolute;
     bottom: 0;
@@ -35,6 +45,14 @@
     position: absolute;
     width: 550px;
     animation: clouds-animation 20s infinite linear;
+}
+
+.mario-dead {
+    animation: mario-dead 600ms ease-out;
+}
+
+.black-board-dead {
+    animation: black-board-dead-animation 2s;
 }
 
 @keyframes pipe-animation {
@@ -74,5 +92,32 @@
 
     to {
         right: 100%;
+    }
+}
+
+@keyframes mario-dead {
+    0% {
+        bottom: 0px;
+    }
+    10% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 250px;
+    }
+
+    100% {
+        bottom: -200px;
+    }
+}
+
+@keyframes black-board-dead-animation {
+    0% {
+        opacity: 0.01;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
