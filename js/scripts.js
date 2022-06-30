@@ -7,17 +7,20 @@ const marioJump = (event) => {
         mario.classList.add("mario-jump");
         setTimeout(function () {
             mario.classList.remove("mario-jump");
-        }, 400);
+        }, 600);
     }
 }
 
 const loop = setInterval(() => {
 
     const pipePosition = pipe.offsetLeft;
-    
-    if (pipePosition <= 100){
+    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+    //console.log(marioPosition)
+    if (pipePosition <= 100 && pipePosition > 0 && marioPosition <= 100){
+
         pipe.style.animation = 'none';
-        pipe.style.left = `${pipePosition}px`
+        pipe.style.left = `${pipePosition}px`;
+
     }
 
 }, 10);
